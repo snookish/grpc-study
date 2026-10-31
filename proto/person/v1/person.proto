@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package person.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/snookish/grpc/gen/go/person/v1;personv1";
+
+service PersonService {
+  rpc SavePerson(SavePersonRequest) returns (SavePersonResponse);
+  rpc GetPerson(GetPersonRequest) returns (GetPersonResponse);
+  rpc ListPeople(ListPeopleRequest) returns (ListPeopleResponse);
+}
+
+message Person {
+  string name = 1;
+  google.protobuf.Timestamp dob = 2;
+}
+
+message SavePersonRequest {
+  string name = 1;
+  google.protobuf.Timestamp dob = 2;
+}
+
+message SavePersonResponse {
+  Person person = 1;
+}
+
+message GetPersonRequest {
+  string name = 1;
+}
+
+message GetPersonResponse {
+  Person person = 1;
+}
+
+message ListPeopleRequest {}
+
+message ListPeopleResponse {
+  repeated Person people = 1;
+}

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package streaming.v1;
+
+import "common/v1/log.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/snookish/grpc/gen/go/streaming/v1;streamingv1";
+
+service StreamingService {
+  rpc LogStream(stream LogStreamRequest) returns (LogStreamResponse);
+  rpc StreamServerTime(StreamServerTimeRequest) returns (stream StreamServerTimeResponse);
+}
+
+message StreamServerTimeRequest {
+  int64 interval_seconds = 1;
+}
+
+message StreamServerTimeResponse {
+  google.protobuf.Timestamp current_timestamp = 1;
+}
+
+message LogStreamRequest {
+  google.protobuf.Timestamp timestamp = 1;
+  common.v1.LogLevel level = 2;
+  string message = 3;
+}
+
+message LogStreamResponse {
+  int32 entries_logged = 1;
+}

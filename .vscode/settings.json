@@ -1,14 +1,17 @@
 {
   "cSpell.words": [
+    "commonv",
     "egithub",
     "extendee",
     "Idxs",
+    "personv",
     "protob",
     "protoc",
     "protogen",
     "protoimpl",
     "protoreflect",
     "snookish",
+    "streamingv",
     "timestamppb"
   ]
 }
